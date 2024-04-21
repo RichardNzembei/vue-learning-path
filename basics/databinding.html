@@ -1,0 +1,36 @@
+<!--text-->
+<span>message : {{msg}}
+</span>
+<!--will not change-->
+<span>this will not channge : {{msg}}
+</span>
+<!--raw html-->
+<div>{{{raww-html}}}</div>
+<!--attributes-->
+<div id="item-{{id}}"></div>
+<!--binding expressions-->
+<!--javascript expressions-->
+{{number + 1}}
+{{ok? : 'yes' ;'no'}}
+{{message.split('').reverse().join('')}}
+<!--filters-->
+{{message|capitalize}}
+{{message|filterA|filterB}}
+{{message|filterA "arg" arg}}
+<!--directives-->
+<p v-if="greeting">hello!</p>
+<!--arguments-->
+<a v-bind:href="url"></a>
+<a v-on:click="dosomething"></a>
+<!--modifiers-->
+<a v-bind:href.literal="a/b/c"></a>
+<!--shorthands-->
+<!--v-bind shorthand-->
+<a v-bind:href="url"></a>
+<a :href="url"></a>
+<button v-bind:disabled="dosomecondition">button</button>
+<button disabled="dosomecondition">button</button>
+<!--v-on shorthand-->
+<a v-on:click="dosomething"></a>
+<a v @click="dosomething"></a>
+

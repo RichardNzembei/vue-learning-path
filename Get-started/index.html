@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue App</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+    <style>
+        .box{
+            background-color: aqua;
+            height: 200px;
+            width: 100px;
+        }
+        .box.two{
+            background-color: rgb(10, 34, 102);
+            height: 200px;
+            width: 100px;
+        }
+        .box.three{
+            background-color: rgb(20, 190, 62);
+            height: 200px;
+            width: 100px;
+        }
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" v-cloak>
+        {{ greeting }}
+        {{ description }}
+        <input @keyup.enter="greet(greeting + '!!!!!')" v-model="greeting"/>
+        <hr/>
+        <button v-on:click="togglebox">toggle box</button>
+        <div v-if="isvisible"  class="box"></div>
+     
+    </div>
+
+    <script>
+    const app = Vue.createApp({
+        data() {
+            return { 
+                greeting: 'Hello Vue!',
+                description: 'Vue is running.',
+                isvisible:false
+        };
+       
+    },
+    methods: {
+            togglebox(){
+                this.isvisible=!this.isvisible
+            },
+            greet(greeting){
+                console.log(greeting)
+            }
+        }
+    });
+    app.mount('#app');
+    </script>
+</body>
+</html>
