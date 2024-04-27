@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>message is:{{message}}</p>
+        <input v-model="message" placeholder="edit me">
+        <input type="checkbox" id="checkbox" v-model="checked">
+        <label for="checkbox">{{checked}}</label>
+        <div>Picked: {{ picked }}</div>
+
+<input type="radio" id="one" value="One" v-model="picked" />
+<label for="one">One</label>
+
+<input type="radio" id="two" value="Two" v-model="picked" />
+<label for="two">Two</label>
+
+    </div>
+    <script>
+        const app=Vue.createApp({
+        data(){
+            return{
+                message:'',
+                checked:true,
+                picked:''
+            }
+        }
+               
+
+        })
+        app.mount('#app')
+    </script>
+    
+    
+   
+</body>
+</html>
+

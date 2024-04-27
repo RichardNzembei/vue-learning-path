@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div class="demo">
+            <button
+               v-for="(_, tab) in tabs"
+               :key="tab"
+               :class="['tab-button', { active: currentTab === tab }]"
+               @click="currentTab = tab"
+             >
+              {{ tab }}
+            </button>
+              <component :is="tabs[currentTab]" class="tab"></component>
+          </div>
+    </div>
+    <script>
+        const { createApp, ref } = Vue;
+
+        // Components named in lowercase to match keys
+        const home = {
+            template: `<div>Home component contents</div>`
+        };
+        const posts = {
+            template: `<div>Posts component contents</div>`
+        };
+        const archive = {
+            template: `<div>Archive component contents</div>`
+        };
+
+        createApp({
+            setup() {
+                const currentTab = ref('home'); // Initial tab set to 'home'
+                const tabs = { home, posts, archive }; // Key names must match component names
+                return { currentTab, tabs };
+            },
+        }).mount('#app');
+    </script>
+</body>
+</html>

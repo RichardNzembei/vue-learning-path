@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <title></title>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+    </head>
+    <body>
+<div id="app">
+    <li v-for="(item, index) in items">
+        {{ parentMessage }} - {{ index }} - {{ item.message }}
+      </li>
+    <button @click="count++">add1</button>
+      <h1>count is{{count}}</h1>
+
+
+</div>
+<script>
+    let app=Vue.createApp({
+        data(){
+            return{
+                parentMessage : 'Parent',
+                items : [
+                { message: 'Foo' },
+                 { message: 'Bar' },
+                 {message:'richie'}
+                ]
+            
+
+            }
+        }
+    })
+    app.mount('#app')
+</script>
+    </body>
+</html>

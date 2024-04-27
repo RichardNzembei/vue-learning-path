@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+</head>
+<body>
+<div id="app">
+   
+    <a @click.stop="doThis">Click me (to stop propagation)</a>
+    <form @submit.prevent="onSubmit">
+        <button type="submit">Prevent submit</button>
+    </form>
+    <a @click.stop.prevent="doThat">Stop and prevent</a>
+    <form @submit.prevent></form> <!-- Empty handler -->
+    <div @click.self="doThat">Click me (self)</div>
+</div>
+
+<script>
+    const app = Vue.createApp({
+        methods: {
+            doThis() {
+                alert('Propagation stopped');
+            },
+            onSubmit() {
+                alert('Form submitted without reloading');
+            },
+            doThat() {
+                alert('Clicked directly');
+            },
+        }
+    });
+    app.mount('#app');
+</script>
+</body>
+</html>

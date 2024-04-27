@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vue Components</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+<body>
+    <div id="app">
+        <h1>Published Books</h1>
+        <h2>{{message}}</h2>
+        <p>{{ publishedBooksMessage }}</p>
+        <button @click="awesome = !awesome">Toggle</button>
+
+        <h1 v-if="awesome">Vue is awesome!</h1>
+        <h1 v-else>Oh no 😢</h1>
+    </div>
+
+    <!-- Load Vue 3 from CDN -->
+
+    <script>
+        // Create a new Vue application
+        const app = Vue.createApp({
+            data(){
+                return{
+                    awesome:true,
+                    message:'hello friends'
+                }
+            },
+            // The 'setup' function is part of the Composition API
+            setup() {
+                // Reactive state
+                const author = Vue.reactive({
+                    name: 'Richard Reuben',
+                    books: [
+                        'Vue1 - Docs',
+                        'Vue2 - Docs2',
+                        'Vue3 - Docs'
+                    ]
+                });
+
+                // Computed property
+                const publishedBooksMessage = Vue.computed(() => {
+                    return author.books.length > 0 ? 'Yes' : 'No';
+                });
+
+                // Expose to the template
+                return { publishedBooksMessage };
+            }
+        });
+
+        // Mount the application
+        app.mount('#app');
+    </script>
+</body>
+</html>

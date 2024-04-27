@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+    
+</head>
+<body>
+    <div id="app">
+        <my-card title="hello world" likes="300" category="programming" ></my-card>
+        <my-card title="software" likes="1k" category="cyber security" ></my-card>
+    </div>
+    
+    <script >
+        const app=Vue.createApp({})
+app.component('my-card',{
+    props:['title','category','likes'],
+    template:`
+    <div>
+    <h1>{{title}}</h1>
+    <p>{{category}}</p>
+    <h2>liked by {{likes}} people</h2>
+    </div>
+    `
+})
+app.mount('#app')
+    </script>
+</body>
+</html>

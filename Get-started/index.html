@@ -7,6 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
     <style>
         .box{
+        
             background-color: aqua;
             height: 200px;
             width: 100px;
@@ -24,12 +25,17 @@
         [v-cloak]{
             display: none;
         }
+        input{
+            margin: 10px;
+            display: block;
+            background-color: aquamarine;
+        }
+       
     </style>
 </head>
 <body>
     <div id="app" v-cloak>
-        {{ greeting }}
-        {{ description }}
+       <login-form/>
         <input @keyup.enter="greet(greeting + '!!!!!')" v-model="greeting"/>
         <hr/>
         <button v-on:click="togglebox">toggle box</button>
@@ -44,7 +50,8 @@
                 greeting: 'Hello Vue!',
                 description: 'Vue is running.',
                 isvisible:false
-        };
+        }; {{ greeting }}
+        {{ description }}
        
     },
     methods: {
@@ -55,8 +62,73 @@
                 console.log(greeting)
             }
         }
-    });
-    app.mount('#app');
+    })
+    
+    app.component('login-form',{
+        template:`
+          <form @submit.prevent="handlesubmit">
+
+            <h1>{{title}}</h1>
+            <p v-for="str in input">{{str}}</p>
+            <custom-input v-model="email" :label="emaillabel"/>
+            <custom-input v-model="password"  :label="passwordlabel"/>
+            <button>login</button>
+
+            </form>
+        `,
+        components:['custom-input'],
+        data(){
+            return{
+                title: 'login form',
+                input:[
+                'email',
+                'password',
+                'name'
+                ],
+                email:'',
+                password:'',
+                emaillabel:'email',
+                passwordlabel:'password'
+            }
+        },
+        methods:{
+            handlesubmit(login){
+                console.log(this.email, this.password)
+            }
+        }
+    }),
+    app.component('custom-input',{
+        template:`
+        <label>
+            {{label}}
+            <input type="text" v-model="inputvalue">
+            </label>
+
+        `,
+        props:['label','modelvalue'],
+        computed:{
+            inputvalue:{
+            get(){
+                return this.modelvalue
+
+            },
+            set(value){
+               console.log(value)
+                this.$emit('update:modelvalue',value)
+
+            }
+        }
+    }
+        
+       // data(){
+       //     return{
+       //         inputvalue:''
+       //     }
+        //}
+
+    }),
+    
+    app.mount('#app')
     </script>
 </body>
 </html>

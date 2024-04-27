@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <input type="text" placeholder="submit on enter" v-on:keyup.enter="submit">
+            <button v-on:click.right="showcontent">click</button>
+            <input type="text" placeholder="trl + Shift + S to save" v-on:keyup.ctrl.shift.s="save">
+        </div>
+        <script>
+            const app=Vue.createApp({
+                methods:{
+                    submit(){
+                        alert('form submited')
+
+                    },
+                    showcontent(){
+                        alert('show content when right clicked')
+                        console.log(event);
+                    },
+                    save(){
+                        alert('save data')
+                    }
+                    }
+                
+            })
+            app.mount('#app')
+        </script>
+
+    </body>
+</html>
