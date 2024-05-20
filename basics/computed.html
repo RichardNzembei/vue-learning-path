@@ -1,39 +1,37 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>computed property</title>
-    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    <title>computed properties</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
 </head>
 <body>
     <div id="app">
-        <p>{{ author.name }} has published books:</p>
-        <span>{{ publishedBooksMessage }}</span>
+        <p>{{author.name}} has published books:</p>
+        <span>{{publishedbooksmessage}}</span>
     </div>
-    
     <script>
-        const { createApp, computed, ref } = Vue;
+        const {createApp,computed,ref}=Vue
         createApp({
-            setup() {
-                const author = ref({
-                    name: 'John Doe',
-                    books: [
-                        'Vue 1 - Advanced Guide',
-                        'Vue 2 - Basic Guide'
+            setup(){
+                const author=ref({
+                    name:'richard nzembei',
+                    books:[
+                        'blossoms of savvannah',
+                        'kigogo',
+                        'tumbo lisiloshiba'
                     ]
-                });
-
-                const publishedBooksMessage = computed(() => {
-                    return author.value.books.length > 0 ? 'Yes' : 'No';
-                });
-
-                return {
+                })
+                const publishedbooksmessage=computed(()=>{
+                    return author.value.books.length>0? 'Yes':'No'
+                })
+                return{
                     author,
-                    publishedBooksMessage
-                };
+                    publishedbooksmessage
+                }
             }
-        }).mount('#app');
+        }).mount('#app')
     </script>
+    
 </body>
 </html>
