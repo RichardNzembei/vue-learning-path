@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>useer authentication</title>
+    <style>
+        p{
+            color: aqua;
+            text-decoration: wavy;
+            
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <p v-if="authenticated">welcome user</p>
+        <form action="">
+            <label for="username">Username</label><br>
+            <input type="text" id="username" ><br>
+            <label for="gmail">Enter Gmail</label><br>
+            <input type="text" id="gmail" ><br>
+            <label for="password">password</label><br>
+            <input type="text" id="username" ><br><br>
+            <input type="submit" value="Register"><br>
+        </form>
+        <p v-else>i already have an account</p>
+    </div>
+    <script>
+        const {createApp,ref}=Vue
+        createApp({
+            setup(){
+                const authenticated=ref(true)
+                return{
+                    authenticated
+                }
+
+            }
+        })
+    </script>
+    
+</body>
+</html>

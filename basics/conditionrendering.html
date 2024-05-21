@@ -1,0 +1,28 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>condition rendering</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="awesome=!awesome">toggle</button>
+        <h1 v-if="awesome">vue is awesome</h1>
+        <h2 v-else>oh no</h2>
+
+    </div>
+    <script>
+        const {createApp,ref}=Vue
+        createApp({
+            setup(){
+                const awesome=ref(true)
+                return{
+                    awesome
+                }
+            }
+        }).mount('#app')
+    </script>
+    
+</body>
+</html>
