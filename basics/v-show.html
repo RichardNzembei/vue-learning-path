@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>using  v-show</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="toggle">toggle</button>
+        <p v-show="isinvisible">welcome to vue</p>
+        
+
+    </div>
+    <script>
+        const {createApp,ref}=Vue
+        createApp({
+            setup(){
+                const isinvisible=ref(true)
+                return{
+                    isinvisible
+                }
+            },
+            methods:{
+                toggle(){
+                    this.isinvisible=!this.isinvisible
+                }
+            }
+        }).mount('#app')
+    </script>
+    
+</body>
+</html>
