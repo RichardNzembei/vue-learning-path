@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>craeting components</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+</head>
+<body>
+    <div id="app">
+        <mycomponent></mycomponent>
+        <mycomponent></mycomponent>
+
+    </div>
+    <script>
+        const {createApp,ref,defineComponent}=Vue
+        
+                const mycomponent=defineComponent({
+                    name:'mycomponent',
+                    template:`
+                    <div>
+                      <p>{{title}}</p>
+                      <input v-model="message" placeholder="type a message"></input>
+                      <p>{{message}}</p>  
+                        </div>
+                    `,
+                    setup(){
+                const title=ref('hello from my component')
+                const message=ref('')
+                return{
+                    title,
+                    message
+                }
+            }
+                
+            })
+            const app=createApp({})
+            
+        app.component('mycomponent',mycomponent)
+        app.mount('#app')
+
+    </script>
+    
+</body>
+</html>
