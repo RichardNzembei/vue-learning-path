@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>implementing a watcher</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" placeholder="type a message" v-model="message">
+        <p>message:{{message}}</p>
+        <p>reversedmessage:{{reversedmessage}}</p>
+
+    </div>
+    <script>
+        const{createApp,ref,watch,computed}=Vue
+        createApp({
+            setup(){
+                const message=ref('')
+                const reversedmessage=computed(()=>{
+                    return message.value.split('').reverse().join('')
+                })
+                watch(message,(newval,oldval)=>{
+                    console.log(`the message changed from "${oldval}" to "${newval}"`)
+
+                })
+                return{
+                    message,
+                    reversedmessage
+                }
+            }
+        }).mount('#app')
+    </script>
+    
+</body>
+</html>
