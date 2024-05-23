@@ -1,0 +1,72 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form input binding</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>my names are:</p>
+        <p>{{names}}</p>
+        <input v-model.trim.lazy="names" type="text">
+        <h1><u>checked boxes</u></h1>
+        <p>checked names :{{checkednames}}</p>
+        <input type="checkbox" id="reuben" value="reuben" v-model="checkednames">
+        <label for="reuben">reuben</label>
+        <input type="checkbox" id="christine" value="christine" v-model="checkednames">
+        <label for="christine">christine</label>
+        <input type="checkbox" id="silvia" value="silvia" v-model="checkednames">
+        <label for="silvia">silvia</label>
+        <h2><u><b>radio</b></u></h2>
+        <div>picked:{{picked}}</div>
+        <input type="radio" id="graduate" value="graduate" v-model="picked">
+        <label for="graduate">graduate</label><br>
+        <input type="radio" id="non-graduate" value="non-graduate" v-model="picked">
+        <label for="non-graduate">non-graduate</label>
+        <h3><u><b>selecting only one option</b></u></h3>
+        <div>field of study:{{selected}}</div>
+        <select name="field of study" v-model="selected">
+            <option disabled value="please select one">select one option</option>
+            <option value="engineering">engineering</option>
+            <option value="medicine">medicine</option>
+            <option value="business">business</option>
+            <option value="technology">technology</option>
+        </select>
+        <h4><u><b>selecting multiple options</b></u></h4>
+        <div>field of study:{{selectmultiple}}</div>
+        <select name="field of study" v-model="selectmultiple" multiple>
+          
+            <option value="engineering">engineering</option>
+            <option value="medicine">medicine</option>
+            <option value="business">business</option>
+            <option value="technology">technology</option>
+        </select>
+
+
+
+
+    </div>
+    <script>
+        const{createApp,ref}=Vue
+        createApp({
+            setup(){
+                const names=ref('')
+                const checkednames=ref([])
+                const picked=ref()
+                const selected=ref()
+                const selectmultiple=ref([])
+                return{
+                    names,
+                    checkednames,
+                    picked,
+                    selected,
+                    selectmultiple
+                }
+                
+            }
+        }).mount('#app')
+    </script>
+    
+</body> <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+</html>
