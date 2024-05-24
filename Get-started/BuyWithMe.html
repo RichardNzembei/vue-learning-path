@@ -4,7 +4,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>online shop</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
 
+    #app {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .product {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: #f9f9f9;
+    }
+
+    .product h2 {
+        margin-top: 0;
+    }
+
+    .product button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+
+    .product button:hover {
+        background-color: #0056b3;
+    }
+
+    .product-details {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 20px;
+        background-color: #f9f9f9;
+    }
+
+    .product-details h1 {
+        margin-top: 0;
+    }
+
+    .product-details button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+
+    .product-details button:hover {
+        background-color: #0056b3;
+    }
+
+    .shopping-cart {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 20px;
+        background-color: #f9f9f9;
+    }
+
+    .shopping-cart h2 {
+        margin-top: 0;
+    }
+</style>
 </head>
 <body>
     <div id="app">
@@ -18,9 +90,9 @@
     const app= createApp({
             setup(){
             const products=ref([
-        { id:1, name:'shoes',description:'j4s'},
-        { id:2, name:'shirts',description:'material'},
-        { id:3, name:'trousers',description:'jeans'}
+        { id:1, name:'shoes',description:'j4s',price:3000},
+        { id:2, name:'shirts',description:'material',price:500},
+        { id:3, name:'trousers',description:'jeans',price:1500}
                 ])
                 const selectedProduct=ref(null);
                 const cart=ref([]);
@@ -44,7 +116,7 @@
             template:`
             <div>
                 <h1>Products</h1>
-            <div v-for="product in products" :key="product.id">
+            <div v-for="product in products" :key="product.id" class="product">
                 <h2>{{ product.name }}</h2>
                 <p>Price: {{ product.price }}</p>
                 <button @click="$emit('select-product', product)">View Details</button>
@@ -56,7 +128,7 @@
 app.component('product-details', {
     props: ['product'],
     template: `
-        <div>
+        <div class="product-details">
             <h1>{{ product.name }}</h1>
             <p>Price: {{ product.price }}</p>
             <p>Description: {{ product.description }}</p>
@@ -72,7 +144,7 @@ app.component('shopping-cart', {
                 return {};
             },
     template: `
-        <div>
+        <div class="shopping-cart">
             <h2>Shopping Cart</h2>
             <ul>
                 <li v-for="item in cart" :key="item.id">
