@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 300px;
+            margin: 0 auto;
+            padding-top: 100px;
+        }
+        input {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px;
+            width: 100%;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" class="container">
+        <h1>Login</h1>
+        <input type="email" v-model="email" placeholder="Email">
+        <input type="password" v-model="password" placeholder="Password">
+        <button @click="login">Login</button>
+        <p>Don't have an account? <a href="register.html">Register here</a></p>
+    </div>
+
+    <script>
+        const { createApp, ref } = Vue;
+
+        createApp({
+            setup() {
+                const email = ref('');
+                const password = ref('');
+
+                const login = () => {
+                    const storedUser = JSON.parse(localStorage.getItem('user'));
+                    if (storedUser && storedUser.email === email.value && storedUser.password === password.value) {
+                        alert('Login successful!');
+                        window.location.href = 'profile.html';
+                    } else {
+                        alert('Invalid credentials');
+                    }
+                };
+
+                return { email, password, login };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 300px;
+            margin: 0 auto;
+            padding-top: 100px;
+        }
+        button {
+            padding: 10px;
+            width: 100%;
+            background-color: #d9534f;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #c9302c;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" class="container">
+        <h1>Profile</h1>
+        <p>Email: {{ user.email }}</p>
+        <button @click="logout">Logout</button>
+    </div>
+
+    <script>
+        const { createApp, ref, onMounted } = Vue;
+
+        createApp({
+            setup() {
+                const user = ref({});
+
+                onMounted(() => {
+                    const storedUser = JSON.parse(localStorage.getItem('user'));
+                    if (!storedUser) {
+                        alert('Not authenticated!');
+                        window.location.href = 'login.html';
+                    } else {
+                        user.value = storedUser;
+                    }
+                });
+
+                const logout = () => {
+                    localStorage.removeItem('user');
+                    alert('Logged out successfully!');
+                    window.location.href = 'login.html';
+                };
+
+                return { user, logout };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>
